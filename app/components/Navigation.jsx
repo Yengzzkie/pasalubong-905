@@ -3,7 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import { useStoreUserData, usePostSearchResult, useSearchQuery } from "@/stores/store";
+import {
+  useStoreUserData,
+  usePostSearchResult,
+  useSearchQuery,
+} from "@/stores/store";
 import axios from "axios";
 import Link from "next/link";
 import Box from "@mui/material/Box";
@@ -18,7 +22,6 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AvatarWithUserDropdown from "./AvatarWithUserDropdown";
 import Loader from "./ui/Loader";
-import SearchBar from "./SearchBar";
 
 const pages = [
   { text: "Home", link: "/" },
@@ -51,7 +54,9 @@ function Navigation() {
     async function fetchUserData() {
       try {
         if (!session?.user?.id) return;
-        const response = await axios.get(`/api/users/user?userId=${session?.user?.id}`);
+        const response = await axios.get(
+          `/api/users/user?userId=${session?.user?.id}`
+        );
         setUserData(response.data);
       } catch (error) {
         console.error("Failed to fetch user data:", error);
@@ -62,18 +67,6 @@ function Navigation() {
       fetchUserData();
     }
   }, [session, isLoggedIn]);
-
-  // Function to fetch posts based on search query
-  async function fetchPostsByQuery() {
-    try {
-      const response = await axios.get(`/api/posts/search?q=${encodeURIComponent(searchQuery)}`);
-      setPostSearchResult(response.data);
-    } catch (error) {
-      console.error("Error fetching posts by query:", error);
-    } finally {
-      router.push("/search-result");
-    }
-  }
 
   if (status === "loading") {
     return (
@@ -91,7 +84,6 @@ function Navigation() {
 
   return (
     <div className="sticky top-0 z-50 !bg-[#fff] !text-[var(--color-base-content)]">
-
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -211,7 +203,12 @@ function Navigation() {
           </Typography>
 
           {/* Desktop Pages */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex", justifyContent: "center" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex", justifyContent: "center" },
+            }}
+          >
             {isLoggedIn &&
               pages.map((page) => (
                 <Link key={page.text} href={page.link} passHref>
@@ -268,7 +265,6 @@ function Navigation() {
           </Box>
         </Toolbar>
       </Container>
-      <SearchBar fetchPostsByQuery={fetchPostsByQuery} />
     </div>
   );
 }

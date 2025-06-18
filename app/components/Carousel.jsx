@@ -1,79 +1,39 @@
-"use client"
-import React, { useState } from "react"
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
-import "@/app/globals.css"
+"use client";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import "@/app/globals.css";
 
-function ThumbnailPlugin(mainRef) {
-  return (slider) => {
-    function removeActive() {
-      slider.slides.forEach((slide) => {
-        slide.classList.remove("active")
-      })
-    }
-    function addActive(idx) {
-      slider.slides[idx].classList.add("active")
-    }
-
-    function addClickEvents() {
-      slider.slides.forEach((slide, idx) => {
-        slide.addEventListener("click", () => {
-          if (mainRef.current) mainRef.current.moveToIdx(idx)
-        })
-      })
-    }
-
-    slider.on("created", () => {
-      if (!mainRef.current) return
-      addActive(slider.track.details.rel)
-      addClickEvents()
-      mainRef.current.on("animationStarted", (main) => {
-        removeActive()
-        const next = main.animator.targetIdx || 0
-        addActive(main.track.absToRel(next))
-        slider.moveToIdx(Math.min(slider.track.details.maxIdx, next))
-      })
-    })
-  }
-}
-
-export default function Carousel({ itemData }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const [sliderRef, instanceRef] = useKeenSlider({
-    initial: 0,
-  })
-  const [thumbnailRef] = useKeenSlider(
-    {
-      initial: 0,
-      slides: {
-        perView: 4,
-        spacing: 10,
-      },
+export default function Carousel() {
+  const [sliderRef] = useKeenSlider({
+    loop: true,
+    slides: {
+      perView: 3,
+      spacing: 25,
     },
-    [ThumbnailPlugin(instanceRef)]
-  )
+  });
 
+  const slides = [
+    "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=1740&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7?q=80&w=952&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?q=80&w=1740&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1565299507177-b0ac66763828?q=80&w=844&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1574484284002-952d92456975?q=80&w=774&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1529042410759-befb1204b468?q=80&w=772&auto=format&fit=crop",
+  ];
 
   return (
-    <>
-      <div ref={sliderRef} className="keen-slider">
-        {itemData.map((image, index) => (
-          <div key={index} className="keen-slider__slide ">
-            <img loading="lazy" onClick={() => {
-              setIsOpen(true);
-              setSelectedImage(image);
-            }} src={image} alt="" />
+    <div ref={sliderRef} className="keen-slider mt-16">
+      {slides.map((src, index) => (
+        <div key={index} className="keen-slider__slide flex flex-col bg-zinc-50 overflow-hidden rounded shadow">
+          <div className="h-64 w-full relative">
+            <img src={src} alt="" className="object-cover w-full h-full" />
           </div>
-        ))}
-      </div>
-
-      <div ref={thumbnailRef} className="keen-slider thumbnail">
-        {itemData.map((image, index) => (
-          <div key={index} className="keen-slider__slide "><div className="overlay"></div><img src={image} alt="" /></div>
-        ))}
-      </div>
-    </>
-  )
+          <div className="flex flex-col gap-2 py-6 px-4">
+            <h1 className="text-zinc-600 font-bold text-center text-2xl">Dish name here</h1>
+            <p className="text-[#e54c2a] font-bold text-2xl text-center">$10.99</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 }

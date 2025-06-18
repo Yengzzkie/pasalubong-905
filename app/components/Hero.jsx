@@ -1,60 +1,36 @@
 "use client";
 
-import { motion } from "motion/react";
-import { PointerHighlight } from "./ui/pointer-highlight";
+import { FlipWords } from "./ui/flip-words";
+import HeroBackground from "@/public/images/hero-bg.jpg";
+import { Button } from "@material-tailwind/react";
 
 export default function Hero() {
+  const words = ["Quality", "Authentic", "Tasty"];
+
   return (
-    <div className="relative mx-auto mt-4 flex max-w-7xl flex-col items-center justify-center w-full">
-      <div className="px-6 pt-4">
-        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-3xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-slate-300">
-          {`A marketplace built with people's generosity`
-            .split(" ")
-            .map((word, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
-                animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: index * 0.1,
-                  ease: "easeInOut",
-                }}
-                className="mr-2 inline-block"
-              >
-                {word}
-              </motion.span>
-            ))}
+    <div
+      className="relative mx-auto mt-4 flex flex-col items-center justify-center w-full min-h-[500px]"
+      style={{
+        backgroundImage: `url(${HeroBackground.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className={`flex flex-col items-center gap-2 px-6 pt-4 bg-opacity-50 p-8 text-center`}>
+        <h1 className={`great-vibes-regular !font-semibold text-[36px] text-zinc-600`}>
+          Welcome to Pasalubong 905
         </h1>
-        <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            duration: 0.8,
-            delay: 0.8,
-          }}
-          className="relative z-10 mx-auto max-w-xl pt-4 text-center text-normal font-normal text-neutral-600 dark:text-neutral-400"
-        >
-          Got something you no longer need? <span>Share it on </span>
-          <span className="text-[var(--color-primary-content)] font-bold text-xl">
-            NadaMart.
-          </span>
-          <span className="text-[var(--color-primary-content)]">ca</span>
-          <span> and</span>
-          <PointerHighlight
-            rectangleClassName="bg-[var(--color-primary)] dark:bg-neutral-700 border-neutral-300 dark:border-neutral-600"
-            pointerClassName="text-yellow-500 -translate-y-1.5 translate-x-1.5"
-            containerClassName="inline-block"
-          >
-            <span className="relative z-10 text-[var(--color-primary-content)] text-[16px] lg:text-lg font-bold text-nowrap p-2">
-              let your unused things find new meaning.
-            </span>
-          </PointerHighlight>
-        </motion.div>
+        <p className="font-raleway font-bold text-2xl lg:text-5xl uppercase text-zinc-600">
+          Loves <FlipWords className="text-[#e54c2a]" words={words} />
+          Food
+        </p>
+        <p className="text-zinc-600 text-xs lg:text-[14px] text-wrap leading-[24px] w-full">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
+          vel volutpat felis, eu condimentum. lorem ipsum dolor. lorem ipsum
+          dolor sit amt.
+        </p>
+        <Button className="bg-[#e54c2a] my-2">Order Now</Button>
       </div>
     </div>
   );
