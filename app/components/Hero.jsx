@@ -30,7 +30,7 @@ export default function Hero() {
           vel volutpat felis, eu condimentum. lorem ipsum dolor. lorem ipsum
           dolor sit amt.
         </p>
-        <Button className="bg-[#e54c2a] my-2">Order Now</Button>
+        <Button className="bg-[#e54c2a] my-2 rounded-none hover:bg-zinc-600 transition-all">Order Now</Button>
       </div>
     </div>
   );

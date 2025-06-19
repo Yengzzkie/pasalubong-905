@@ -23,7 +23,7 @@ const SubHero = () => {
           viverra hendrerit sapien Lorem amet, consectetur adipiscing elit.
           Donec aliquet dolor libero,
         </p>
-        <Button className="bg-[#e54c2a] my-2 w-fit">Read More</Button>
+        <Button className="bg-[#e54c2a] my-2 w-fit rounded-none hover:bg-zinc-600 transition-all">Read More</Button>
       </div>
       <div className="flex-1">
         <img src={Pasalogo.src} className="w-[75%] mx-auto" />

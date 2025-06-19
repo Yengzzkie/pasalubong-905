@@ -22,6 +22,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AvatarWithUserDropdown from "./AvatarWithUserDropdown";
 import Loader from "./ui/Loader";
+import Navlogo from "@/public/images/nav-logo.jpeg"
 
 const pages = [
   { text: "Home", link: "/" },
@@ -99,14 +100,15 @@ function Navigation() {
             }}
           >
             <Link href="/">
-              <h2 className="text-center font-bold text-xl text-[var(--color-base-content)]">
-                <span className="text-[var(--color-primary-content)] text-shadow-lg text-3xl tracking-tighter">
-                  NadaMart.
+                <img src={Navlogo.src} alt="pasalubong 905 logo" className="w-44" />
+              {/* <h2 className="text-center font-bold text-xl text-[var(--color-base-content)]">
+                <span className="text-blue-600 text-shadow-lg text-3xl tracking-tighter">
+                  Pasalubong
                 </span>
-                <span className="text-[var(--color-primary-content)] text-md font-thin">
-                  ca
+                <span className="text-red-500 text-3xl font-bold">
+                  905
                 </span>
-              </h2>
+              </h2> */}
             </Link>
           </Typography>
 
@@ -191,14 +193,15 @@ function Navigation() {
             }}
           >
             <Link href="/">
-              <h2 className="text-center font-bold text-xl text-[var(--color-base-content)]">
+            <img src={Navlogo.src} alt="pasalubong 905 logo" className="w-44" />
+              {/* <h2 className="text-center font-bold text-xl text-[var(--color-base-content)]">
                 <span className="text-[var(--color-primary-content)] text-shadow-lg text-3xl tracking-tighter">
                   NadaMart.
                 </span>
                 <span className="text-[var(--color-primary-content)] text-md font-thin">
                   ca
                 </span>
-              </h2>
+              </h2> */}
             </Link>
           </Typography>
 
@@ -236,30 +239,7 @@ function Navigation() {
                   <AvatarWithUserDropdown userData={userData} />
                 </div>
               ) : (
-                <Box sx={{ display: "flex", gap: 3, alignItems: "center" }}>
-                  <Link href="/register">
-                    <Typography
-                      sx={{
-                        fontWeight: "bold",
-                        color: "var(--color-primary-content)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Register
-                    </Typography>
-                  </Link>
-                  <Link href="/login">
-                    <Typography
-                      sx={{
-                        fontWeight: "bold",
-                        color: "var(--color-primary-content)",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Login
-                    </Typography>
-                  </Link>
-                </Box>
+                null
               )}
             </Tooltip>
           </Box>

@@ -18,8 +18,8 @@ const raleway = Raleway({
 });
 
 export const metadata = {
-  title: "NadaMart",
-  description: "nothing for sale, everything for free",
+  title: "Pasalubong905",
+  description: "Authentic Filipino Restaurant",
 };
 
 export default async function RootLayout({ children }) {

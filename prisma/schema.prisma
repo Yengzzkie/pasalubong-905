@@ -17,87 +17,40 @@ datasource db {
 }
 
 model User {
-  id                      String                    @id @default(uuid())
-  name                    String
-  email                   String                    @unique
-  password                String
-  avatar                  String?
-  mobile                  String?
-  createdAt               DateTime                  @default(now())
-  updatedAt               DateTime                  @updatedAt
-  posts                   Post[]
-  comments                Comment[]
-  ConversationParticipant ConversationParticipant[]
-  Message                 Message[]
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  avatar    String?
+  mobile    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
+  role      Role     @default(ADMIN)
 }
 
 model Post {
-  id             String         @id @default(uuid())
-  title          String
-  content        String
-  contact_number String?
-  condition      Condition      @default(USED_GOOD)
-  tags           String[]
-  image          String[]
-  location       Json
-  authorId       String
-  author         User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  comments       Comment[]
-  conversations  Conversation[]
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
+  id          String   @id @default(uuid())
+  item_name   String
+  description String
+  category    Category @default(PORK)
+  tags        String[]
+  image       String[]
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model Comment {
-  id        String   @id @default(uuid())
-  content   String
-  postId    String
-  post      Post     @relation(fields: [postId], references: [id])
-  authorId  String
-  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+enum Category {
+  PORK
+  CHICKEN
+  VEGETABLE
+  BEEF
+  SEAFOOD
 }
 
-model Conversation {
-  id           String                    @id @default(uuid())
-  postId       String
-  post         Post                      @relation(fields: [postId], references: [id])
-  participants ConversationParticipant[]
-  messages     Message[]
-  createdAt    DateTime                  @default(now())
-  updatedAt    DateTime                  @updatedAt
-}
-
-model ConversationParticipant {
-  id             String       @id @default(uuid())
-  userId         String
-  conversationId String
-  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
-
-  @@unique([userId, conversationId]) // Prevent duplicate entries
-}
-
-model Message {
-  id             String       @id @default(uuid())
-  content        String
-  senderId       String
-  conversationId String
-  sender         User         @relation(fields: [senderId], references: [id], onDelete: Cascade)
-  conversation   Conversation @relation(fields: [conversationId], references: [id])
-  read           Boolean      @default(false)
-  createdAt      DateTime     @default(now())
-}
-
-enum Condition {
-  NEW
-  USED_LIKE_NEW
-  USED_VERY_GOOD
-  USED_GOOD
-  USED_ACCEPTABLE
-  FOR_PARTS
-  FOR_REPAIR
-  FOR_SCRAP
-  FOR_RECYCLING
+enum Role {
+  SUPER_USER
+  ADMIN
 }

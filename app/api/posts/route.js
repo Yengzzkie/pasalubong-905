@@ -32,30 +32,24 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const {
-      authorId,
-      title,
-      content,
-      location,
+      userId,
+      item_name,
+      description,
       image,
-      condition,
-      contact_number,
+      category,
       tags,
     } = await request.json();
 
     const newPost = await prisma.post.create({
       data: {
-        authorId,
-        title,
-        content,
-        location,
+        userId,
+        item_name,
+        description,
         image,
-        condition,
-        contact_number,
+        category,
         tags,
       },
     });
-
-    console.log(newPost);
 
     return NextResponse.json(
       {
