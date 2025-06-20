@@ -5,7 +5,7 @@ const Featured = () => {
   return (
     <div className="bg-[#f1f1f1] bg-[url('/images/bg-1.png')] bg-no-repeat bg-scroll bg-left-bottom">
       <div
-        className={`flex flex-col items-center bg-no-repeat grey-bg bg-scroll bg-right-top bg-none lg:bg-[url('/images/bg-2.png')] h-full p-20`}
+        className={`flex flex-col items-center bg-no-repeat grey-bg bg-scroll bg-right-top bg-none lg:bg-[url('/images/bg-2.png')] h-full p-10 lg:p-20`}
       >
         <h1 className="divider great-vibes-regular text-3xl lg:text-[36px] text-center !font-semibold text-zinc-600">
           Our Popular Dishes

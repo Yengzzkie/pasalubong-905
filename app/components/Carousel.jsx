@@ -4,13 +4,50 @@ import "keen-slider/keen-slider.min.css";
 import "@/app/globals.css";
 
 export default function Carousel() {
-  const [sliderRef] = useKeenSlider({
-    loop: true,
-    slides: {
-      perView: 3,
-      spacing: 25,
+  const [sliderRef] = useKeenSlider(
+    {
+      loop: true,
+      breakpoints: {
+        "(min-width: 767px)": {
+          slides: { perView: 2, spacing: 12 },
+        },
+        "(min-width: 1000px)": {
+          slides: { perView: 3, spacing: 10 },
+        },
+      },
+      slides: { perView: 1 },
     },
-  });
+    [
+      (slider) => {
+        let timeout;
+        let mouseOver = false;
+        function clearNextTimeout() {
+          clearTimeout(timeout);
+        }
+        function nextTimeout() {
+          clearTimeout(timeout);
+          if (mouseOver) return;
+          timeout = setTimeout(() => {
+            slider.next();
+          }, 2000);
+        }
+        slider.on("created", () => {
+          slider.container.addEventListener("mouseover", () => {
+            mouseOver = true;
+            clearNextTimeout();
+          });
+          slider.container.addEventListener("mouseout", () => {
+            mouseOver = false;
+            nextTimeout();
+          });
+          nextTimeout();
+        });
+        slider.on("dragStarted", clearNextTimeout);
+        slider.on("animationEnded", nextTimeout);
+        slider.on("updated", nextTimeout);
+      },
+    ]
+  );
 
   const slides = [
     "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=1740&auto=format&fit=crop",
@@ -24,13 +61,20 @@ export default function Carousel() {
   return (
     <div ref={sliderRef} className="keen-slider mt-16">
       {slides.map((src, index) => (
-        <div key={index} className="keen-slider__slide flex flex-col bg-zinc-50 overflow-hidden rounded shadow">
+        <div
+          key={index}
+          className="keen-slider__slide flex flex-col bg-zinc-50 overflow-hidden rounded shadow"
+        >
           <div className="h-64 w-full relative">
             <img src={src} alt="" className="object-cover w-full h-full" />
           </div>
           <div className="flex flex-col gap-2 py-6 px-4">
-            <h1 className="text-zinc-600 font-bold text-center text-2xl">Dish name here</h1>
-            <p className="text-[#e54c2a] font-bold text-2xl text-center">$10.99</p>
+            <h1 className="text-zinc-600 font-bold text-center text-2xl">
+              Dish name here
+            </h1>
+            <p className="text-[#e54c2a] font-bold text-2xl text-center">
+              $10.99
+            </p>
           </div>
         </div>
       ))}
