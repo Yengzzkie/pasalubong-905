@@ -14,7 +14,6 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import ImageUploader from "@/app/components/ImageUploader";
 import Loader from "@/app/components/ui/Loader";
 import ShadowedCard from "@/app/components/ui/ShadowedCard";
-import GoogleMap from "@/app/components/GoogleMap";
 import ConditionSelect from "@/app/components/ui/ConditionSelect";
 import TagSelect from "@/app/components/ui/TagSelect";
 import ProvinceSelect from "./ui/ProvinceSelect";
@@ -168,8 +167,6 @@ const EditPostForm = ({ postData, setIsEditMode, fetchPostDetails }) => {
               />
             </div>
           </div>
-
-          <GoogleMap location={location} />
         </ShadowedCard>
 
         {/* Contact information */}
