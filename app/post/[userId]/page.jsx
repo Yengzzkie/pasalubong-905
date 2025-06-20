@@ -16,25 +16,21 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import ImageUploader from "@/app/components/ImageUploader";
 import Loader from "@/app/components/ui/Loader";
 import ShadowedCard from "@/app/components/ui/ShadowedCard";
-import GoogleMap from "@/app/components/GoogleMap";
 import ConditionSelect from "@/app/components/ui/ConditionSelect";
 import TagSelect from "@/app/components/ui/TagSelect";
-import ProvinceSelect from "@/app/components/ui/ProvinceSelect";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 const Page = () => {
   const { userId } = useParams();
   const { imgFiles } = useFileUploadStore();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [location, setLocation] = useState({
-    city: "",
-    province: "",
-    postal_code: "",
-    country: "Canada",
-  });
-  const [contactNumber, setContactNumber] = useState("");
-  const [condition, setCondition] = useState("NEW");
+  const [itemName, setItemName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(null);
+  const [isFeatured, setIsFeatured] = useState(false);
+  const [category, setCategory] = useState("PORK");
   const [tags, setTags] = useState([]);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,21 +48,21 @@ const Page = () => {
 
     try {
       const baseUrl =
-        "https://crtvgenbjflrgxtjpdwz.supabase.co/storage/v1/object/public/images";
+        "https://dpdvqpbarkmryrbjtrer.supabase.co/storage/v1/object/public/images/item";
 
       const fullUrls = imgFiles.map((file) => {
         const fileName = typeof file === "string" ? file : file.name;
-        return `${baseUrl}/${userId}/${fileName}`;
+        return `${baseUrl}/${fileName}`;
       });
 
       const formData = {
-        authorId: userId,
-        title,
-        content,
-        location,
+        userId,
+        item_name: itemName,
+        description,
+        price: parseFloat(price),
+        isFeatured,
         image: fullUrls,
-        contact_number: contactNumber,
-        condition,
+        category,
         tags,
       };
 
@@ -79,8 +75,8 @@ const Page = () => {
       console.error("Error uploading post:", error);
     } finally {
       setIsLoading(false);
-      setTitle("");
-      setContent("");
+      setItemName("");
+      setDescription("");
     }
   };
 
@@ -110,8 +106,8 @@ const Page = () => {
             <input
               type="text"
               name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
               placeholder="Your title here..."
               className="w-full px-4 py-2 border border-zinc-400 text-zinc-600 bg-transparent"
               required
@@ -127,8 +123,8 @@ const Page = () => {
             </label>
             <TextareaAutosize
               aria-label="empty textarea"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               placeholder="Type your description here..."
               style={{ width: "100%", height: 100, border: ".5px solid #52525c", borderRadius: "4px", padding: "10px" }}
             />
@@ -139,14 +135,14 @@ const Page = () => {
         <ShadowedCard index={2} step="Upload images">
           <div className="flex flex-col gap-2">
             <label className="text-xl lg:text-2xl font-semibold text-zinc-600">
-              Images
+              Image
             </label>
             <ImageUploader ref={uploaderRef} />
           </div>
         </ShadowedCard>
 
         {/* Location */}
-        <ShadowedCard index={3} step="Set pickup/meetup location">
+        {/* <ShadowedCard index={3} step="Set pickup/meetup location">
           <div className="flex items-center gap-4 mb-4">
             <div className="text-[var(--color-base-content)]">
               <ProvinceSelect location={location} setLocation={setLocation} />
@@ -179,7 +175,7 @@ const Page = () => {
           </div>
 
           <GoogleMap location={location} />
-        </ShadowedCard>
+        </ShadowedCard> */}
 
         {/* Contact information */}
         <div>
@@ -192,21 +188,27 @@ const Page = () => {
               <Typography component="span">
                 <div className="flex items-center pb-3 gap-2">
                   <span className="bg-[var(--color-base-300)] text-xs rounded-sm px-2 py-1">
-                    {4}
+                    {3}
                   </span>
-                  <span className="font-bold">Contact Information</span>
+                  <span className="font-bold">Price</span>
                 </div>
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4">
+              <div className="flex flex-col lg:flex-row  gap-4">
                 <TextField
-                  sx={{ width: "100%" }}
-                  label="Mobile Number (Optional)"
+                  sx={{ width: "100%", flex: 1 }}
+                  label="Price"
                   variant="outlined"
-                  value={contactNumber}
-                  onChange={(e) => setContactNumber(e.target.value)}
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  type="number"
+                  required
                 />
+
+                <FormGroup sx={{ flex: 1 }}>
+                  <FormControlLabel required control={<Checkbox checked={isFeatured} onChange={(e) => setIsFeatured(e.target.checked)} />} label="Is featured?" />
+                </FormGroup>
               </div>
             </AccordionDetails>
           </Accordion>
@@ -221,7 +223,7 @@ const Page = () => {
               <Typography component="span" sx={{ width: "100%" }}>
                 <div className="flex items-center gap-2">
                   <span className="bg-[var(--color-base-300)] text-xs rounded-sm px-2 py-1">
-                    {5}
+                    {4}
                   </span>
                   <span className="font-bold">Additional Details</span>
                 </div>
@@ -230,14 +232,13 @@ const Page = () => {
             <AccordionDetails>
               <div className="flex flex-col lg:flex-row items-end gap-4">
                 <ConditionSelect
-                  condition={condition}
-                  setCondition={setCondition}
+                  category={category}
+                  setCategory={setCategory}
                 />
 
                 <div>
                   <p className="text-xs mb-1">
-                    <ErrorOutlineIcon fontSize="inherit" /> Add up to 6 relevant
-                    tags to boost your ad&apos;s visibility.
+                    <ErrorOutlineIcon fontSize="inherit" /> Add up to 6 main ingredients.
                   </p>
                   <TagSelect tags={tags} setTags={setTags} />
                 </div>

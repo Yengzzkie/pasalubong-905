@@ -13,7 +13,7 @@ export async function GET(request) {
       skip,
       take: pageSize,
       orderBy: { createdAt: "desc" },
-      include: { author: { include: { _count: { select: { posts: true } } } } }, // include number of posts by the user for the userAvatarCard
+      include: { user: { include: { _count: { select: { posts: true } } } } }, // include number of posts by the user for the userAvatarCard
     });
 
     return NextResponse.json(
@@ -35,6 +35,8 @@ export async function POST(request) {
       userId,
       item_name,
       description,
+      price,
+      isFeatured,
       image,
       category,
       tags,
@@ -45,6 +47,8 @@ export async function POST(request) {
         userId,
         item_name,
         description,
+        price,
+        isFeatured,
         image,
         category,
         tags,

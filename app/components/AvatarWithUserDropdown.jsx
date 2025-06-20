@@ -30,9 +30,9 @@ export default function AvatarWithUserDropdown({ userData }) {
       link: `/post/${userData?.id}`,
     },
     {
-      label: "My Postings",
+      label: "Admin Dashboard",
       icon: UserCircleIcon,
-      link: `/user/${userData?.id}`,
+      link: `/dashboard`,
     },
     {
       label: "Edit Profile",

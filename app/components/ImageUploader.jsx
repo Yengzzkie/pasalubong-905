@@ -2,16 +2,14 @@
 import { forwardRef, useImperativeHandle } from "react";
 import { Dropzone, DropzoneContent, DropzoneEmptyState } from "@/app/components/dropzone"
 import { useSupabaseUpload } from "@/hooks/use-supabase-upload";
-import { useParams } from "next/navigation";
 
 const ImageUploader = forwardRef((_props, ref) => {
-  const { userId } = useParams();
 
   const uploadProps = useSupabaseUpload({
     bucketName: "images",
-    path: userId,
+    path: "item",
     allowedMimeTypes: ["image/*"],
-    maxFiles: 10,
+    maxFiles: 1,
     maxFileSize: 1000 * 1000 * 10, // 10MB
   });
 

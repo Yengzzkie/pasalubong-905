@@ -1,7 +1,7 @@
 "use client";
 import Carousel from "./Carousel";
 
-const Featured = () => {
+const Featured = ({ items }) => {
   return (
     <div className="bg-[#f1f1f1] bg-[url('/images/bg-1.png')] bg-no-repeat bg-scroll bg-left-bottom">
       <div
@@ -15,7 +15,7 @@ const Featured = () => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim nostrud exercitation ullamco laboris nisi.
         </p>
-        <Carousel />
+        <Carousel items={items} />
       </div>
     </div>
   );

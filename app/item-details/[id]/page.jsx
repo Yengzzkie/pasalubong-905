@@ -11,7 +11,6 @@ import CallIcon from "@mui/icons-material/Call";
 import ChatBubble from "@mui/icons-material/ChatBubble";
 import Carousel from "@/app/components/Carousel";
 import StaggeredDropDown from "@/app/components/StaggeredDropDown";
-import GoogleMap from "@/app/components/GoogleMap";
 import SkeletonLoader from "@/app/components/ui/SkeletonLoader";
 import Tag from "@/app/components/ui/Tag";
 import UserAvatarCard from "@/app/components/UserAvatarCard";
@@ -186,7 +185,6 @@ export default function ItemDetailsPage() {
       <h4 className="text-zinc-600 text-md">
         {itemData.location?.city}, {itemData.location?.province}
       </h4>
-      <GoogleMap location={itemData.location} />
 
       <hr className="my-6" />
 

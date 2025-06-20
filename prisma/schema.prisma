@@ -36,6 +36,8 @@ model Post {
   category    Category @default(PORK)
   tags        String[]
   image       String[]
+  isFeatured  Boolean  @default(false)
+  price       Float?    @default(0)
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())

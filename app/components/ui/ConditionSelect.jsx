@@ -17,16 +17,12 @@ const MenuProps = {
   },
 };
 
-const conditions = [
-  { text: 'New', value: 'NEW' },
-  { text: 'Used - Like New', value: 'USED_LIKE_NEW' },
-  { text: 'Used - Very Good', value: 'USED_VERY_GOOD' },
-  { text: 'Used - Good', value: 'USED_GOOD' },
-  { text: 'Used - Acceptable', value: 'USED_ACCEPTABLE' },
-  { text: 'For Parts', value: 'FOR_PARTS' },
-  { text: 'For Repair', value: 'FOR_REPAIR' },
-  { text: 'For Scrap', value: 'FOR_SCRAP' },
-  { text: 'For Recycling', value: 'FOR_RECYCLING' },
+const categories = [
+  { text: 'Pork', value: 'PORK' },
+  { text: 'Chicken', value: 'CHICKEN' },
+  { text: 'Vegetable', value: 'VEGETABLE' },
+  { text: 'Beef', value: 'BEEF' },
+  { text: 'Seafood', value: 'SEAFOOD' }
 ];
 
 function getStyles(name, selectedValue, theme) {
@@ -37,29 +33,29 @@ function getStyles(name, selectedValue, theme) {
   };
 }
 
-export default function ConditionSelect({ condition, setCondition }) {
+export default function ConditionSelect({ category, setCategory }) {
   const theme = useTheme();
 
   const handleChange = (event) => {
-    setCondition(event.target.value);
+    setCategory(event.target.value);
   };
 
   return (
     <FormControl sx={{ m: 1, width: 300 }}>
-      <InputLabel id="condition-label">Condition</InputLabel>
+      <InputLabel id="category-label">Category</InputLabel>
       <Select
-        labelId="condition-label"
-        id="condition-select"
-        value={condition}
+        labelId="category-label"
+        id="category-select"
+        value={category}
         onChange={handleChange}
-        input={<OutlinedInput label="Condition" />}
+        input={<OutlinedInput label="Category" />}
         MenuProps={MenuProps}
       >
-        {conditions.map((c) => (
+        {categories.map((c) => (
           <MenuItem
             key={c.value}
             value={c.value}
-            style={getStyles(c.value, condition, theme)}
+            style={getStyles(c.value, category, theme)}
           >
             {c.text}
           </MenuItem>
