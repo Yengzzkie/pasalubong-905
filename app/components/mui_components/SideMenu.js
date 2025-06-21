@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import MenuContent from "./MenuContent";
 import OptionsMenu from "./OptionsMenu";
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const Drawer = styled(MuiDrawer)({
   width: drawerWidth,
@@ -23,7 +23,7 @@ const Drawer = styled(MuiDrawer)({
   },
 });
 
-export default function SideMenu() {
+export default function SideMenu({ session }) {
   return (
     <Drawer
       variant="permanent"
@@ -66,10 +66,10 @@ export default function SideMenu() {
             variant="body2"
             sx={{ fontWeight: 500, lineHeight: "16px" }}
           >
-            Riley Carter
+            {session?.user?.name}
           </Typography>
           <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            riley@email.com
+            {session?.user?.email}
           </Typography>
         </Box>
         <OptionsMenu />

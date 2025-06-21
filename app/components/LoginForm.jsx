@@ -4,10 +4,10 @@ import { signIn } from "next-auth/react"
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "../../lib/utils";
-import { IconBrandFacebook, IconBrandGoogle } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import Loader from "./ui/Loader";
-import Link from "next/link";
+import Navlogo from "@/public/images/nav-logo.jpeg"
+
 
 export default function LoginForm() {
   const router = useRouter()
@@ -48,13 +48,7 @@ export default function LoginForm() {
 
   return (
     <div className="max-w-xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input lg:bg-white">
-      <h2 className="text-center font-bold text-xl text-neutral-800">
-        <span className="text-[var(--color-primary-content)] text-3xl tracking-tighter">NadaMart.</span>
-        <span className="text-[var(--color-primary-content)] text-sm font-thin">ca</span>
-      </h2>
-      <p className="text-sm max-w-sm mt-2 text-[var(--color-base-content)]">
-        Login to your account to access full features
-      </p>
+      <img src={Navlogo.src} alt="pasalubong905 logo" />
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
           <Label className="text-gray-400" htmlFor="email">Email Address</Label>
@@ -72,12 +66,12 @@ export default function LoginForm() {
           {loading ? <Loader /> : "Login"}
           <BottomGradient />
         </button>
-        <p className="mt-4">Don't have an account? <Link href="/register" className="font-semibold text-[var(--color-primary-content)] hover:text-[var(--secondary-light)]">Sign up!</Link></p>
+        {/* <p className="mt-4">Don't have an account? <Link href="/register" className="font-semibold text-[var(--color-primary-content)] hover:text-[var(--secondary-light)]">Sign up!</Link></p> */}
         <p className="text-red-500 italic mt-2">{error}</p>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
-        <div className="flex flex-col space-y-4">
+        {/* <div className="flex flex-col space-y-4">
           <button
             className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium bg-zinc-900 shadow-[0px_0px_1px_1px_var(--neutral-800)]"
             type="submit"
@@ -98,7 +92,7 @@ export default function LoginForm() {
             </span>
             <BottomGradient />
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

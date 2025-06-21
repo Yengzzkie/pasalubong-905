@@ -10,6 +10,7 @@ import { Check, Eye, EyeOff, X } from "lucide-react";
 // import { registerInputSchema } from "../utils/registerInputSchema";
 import Loader from "./ui/Loader";
 import axios from "axios";
+import Navlogo from "@/public/images/nav-logo.jpeg"
 
 const supabase = createClient();
 
@@ -203,27 +204,17 @@ const RegistrationForm = () => {
 
   return (
     <div className="min-h-fit max-w-xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-[var(--color-base-100)] shadow-lg mt-2">
-      <h2 className="text-center font-bold text-xl text-[var(--color-base-content)]">
-        <span className="text-[var(--color-primary-content)] text-3xl tracking-tighter">
-          NadaMart.
-        </span>
-        <span className="text-[var(--color-primary-content)] text-md font-thin">
-          ca
-        </span>
-      </h2>
-      <p className="text-sm mt-2 text-[var(--color-base-content)] text-center">
-        Nothing for sale, everything for free!
-      </p>
+      <img src={Navlogo.src} alt="pasalubong905 logo" />
       <br />
       <form className="my-2" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
-            <Label htmlFor="name">Display Name</Label>
+            <Label htmlFor="name">Employee's Name</Label>
             <Input
               onChange={handleInputChange}
               value={formData.name}
               id="name"
-              placeholder="Your name"
+              placeholder="Username"
               type="text"
               name="name"
               className="text-[var(--color-base-content)] bg-[var(--color-base-200)] focus-within:border-[var(--color-primary-content)] transition"
@@ -370,14 +361,14 @@ const RegistrationForm = () => {
           className="flex justify-center items-center bg-gradient-to-br relative group/btn bg-[var(--color-primary)] text-[var(--color-primary-content)] hover:bg-[var(--color-primary-content)] hover:text-[#fff] w-full rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] cursor-pointer"
           type="submit"
         >
-          {loading ? <Loader /> : "Sign up"}
+          {loading ? <Loader /> : "Register"}
           <BottomGradient />
         </button>
         <p className="text-red-500 italic">{error}</p>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
-        <div className="flex flex-col space-y-4">
+        {/* <div className="flex flex-col space-y-4">
           <button
             className="relative group/btn flex items-center justify-start space-x-2 w-full px-4 h-10 rounded-md font-medium shadow-input bg-[var(--color-primary)] hover:bg-[var(--color-primary-content)] dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] cursor-pointer"
             type="submit"
@@ -399,7 +390,7 @@ const RegistrationForm = () => {
             </span>
             <BottomGradient />
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

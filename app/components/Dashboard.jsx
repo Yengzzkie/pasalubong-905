@@ -15,6 +15,7 @@ import {
   datePickersCustomizations,
   treeViewCustomizations,
 } from './theme/customizations';
+import { useSession } from 'next-auth/react';
 
 const xThemeComponents = {
   ...chartsCustomizations,
@@ -24,11 +25,14 @@ const xThemeComponents = {
 };
 
 export default function Dashboard(props) {
+  const { data: session } = useSession();
+
+  console.log(session);
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
       <Box sx={{ display: 'flex' }}>
-        <SideMenu />
+        <SideMenu session={session} />
         <AppNavbar />
         {/* Main content */}
         <Box
