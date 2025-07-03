@@ -175,6 +175,29 @@ body {
 }
 
 /* KEEN SLIDER CUSTOM STYLES */
+.custom-next::before,
+.custom-prev::before {
+  color: red !important;
+  font-size: 30px;
+}
+
+.custom-dot {
+  width: 30px;
+  height: 30px;
+  color: red;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.slick-dots li.slick-active .custom-dot {
+  transform: scale(1.4);
+  color: #e54c2a; /* Optional: highlight active color */
+}
+
+
 [class^="number-slide"],
 [class*=" number-slide"] {
   background: grey;
@@ -186,7 +209,6 @@ body {
   font-weight: 500;
   height: 350px;
   max-height: 100vh;
-
 }
 
 .keen-slider__slide {

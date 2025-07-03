@@ -1,9 +1,9 @@
 "use client";
-import Carousel from "./Carousel";
+import FeaturedCarousel from "./FeaturedCarousel";
 
 const Featured = ({ items }) => {
   return (
-    <div className="bg-[#f1f1f1] bg-[url('/images/bg-1.png')] bg-no-repeat bg-scroll bg-left-bottom">
+    <div className="bg-[#f1f1f1] bg-[url('/images/bg-1.png')] bg-no-repeat bg-scroll bg-left-bottom pb-12">
       <div
         className={`flex flex-col items-center bg-no-repeat grey-bg bg-scroll bg-right-top bg-none lg:bg-[url('/images/bg-2.png')] h-full p-10 lg:p-20`}
       >
@@ -15,7 +15,9 @@ const Featured = ({ items }) => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim nostrud exercitation ullamco laboris nisi.
         </p>
-        <Carousel items={items} />
+      </div>
+      <div className="px-10 lg:px-40">
+        <FeaturedCarousel items={items} />
       </div>
     </div>
   );
