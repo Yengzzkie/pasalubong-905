@@ -3,6 +3,7 @@ import PostsGrid from "@/app/components/PostsGrid";
 import Hero from "@/app/components/Hero";
 import SubHero from "./components/SubHero";
 import Featured from "./components/Featured";
+import FoodMenu from "./components/FoodMenu";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -28,7 +29,7 @@ export default function Home() {
       <Hero />
       <SubHero />
       <Featured items={items} />
-
+      <FoodMenu items={items} />
       
       {/* <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <PostsGrid />

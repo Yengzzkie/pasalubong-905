@@ -18,7 +18,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 const mainListItems = [
   { text: 'Home', icon: <HomeRoundedIcon />, link: '' },
-  { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '' },
+  { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '/register' },
   { text: 'Schedule', icon: <CalendarMonthIcon />, link: '' },
   { text: 'Tasks', icon: <AssignmentRoundedIcon />, link: '' },
   { text: 'Return to Homepage', icon: <KeyboardReturnIcon />, link: "/" }

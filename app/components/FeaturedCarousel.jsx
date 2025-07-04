@@ -83,7 +83,7 @@ function FeaturedCarousel({ items }) {
                 />
               </div>
               <div className="flex flex-col gap-2 py-6 px-4">
-                <h2 className="text-zinc-600 font-bold text-center text-2xl">
+                <h2 className="text-zinc-600 font-raleway font-semibold text-center text-2xl">
                   {item.item_name}
                 </h2>
                 <p className="text-[#e54c2a] font-bold text-2xl text-center">
