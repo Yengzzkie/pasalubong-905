@@ -6,6 +6,7 @@ import Featured from "./components/Featured";
 import FoodMenu from "./components/FoodMenu";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import OtherProducts from "./components/OtherProducts";
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -30,6 +31,7 @@ export default function Home() {
       <SubHero />
       <Featured items={items} />
       <FoodMenu items={items} />
+      <OtherProducts items={items} />
       
       {/* <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <PostsGrid />

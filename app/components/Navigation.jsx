@@ -26,19 +26,15 @@ import Navlogo from "@/public/images/nav-logo.jpeg"
 
 const pages = [
   { text: "Home", link: "/" },
-  { text: "Fashion", link: "/" },
-  { text: "Electronics", link: "/" },
-  { text: "Hobbies", link: "/" },
-  { text: "Toys", link: "/" },
-  { text: "Appliances", link: "/" },
+  { text: "About", link: "/" },
+  { text: "Gallery", link: "/" },
+  { text: "Contact", link: "/" },
 ];
 
 function Navigation() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const { searchQuery } = useSearchQuery();
-  const { setPostSearchResult } = usePostSearchResult();
   const { userData, setUserData } = useStoreUserData();
   const isLoggedIn = !!session?.user;
 
@@ -100,15 +96,7 @@ function Navigation() {
             }}
           >
             <Link href="/">
-                <img src={Navlogo.src} alt="pasalubong 905 logo" className="w-44" />
-              {/* <h2 className="text-center font-bold text-xl text-[var(--color-base-content)]">
-                <span className="text-blue-600 text-shadow-lg text-3xl tracking-tighter">
-                  Pasalubong
-                </span>
-                <span className="text-red-500 text-3xl font-bold">
-                  905
-                </span>
-              </h2> */}
+              <img src={Navlogo.src} alt="pasalubong 905 logo" className="w-44" />
             </Link>
           </Typography>
 
@@ -180,8 +168,6 @@ function Navigation() {
 
           {/* Mobile Logo */}
           <Typography
-            variant="h5"
-            noWrap
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -193,15 +179,7 @@ function Navigation() {
             }}
           >
             <Link href="/">
-            <img src={Navlogo.src} alt="pasalubong 905 logo" className="w-44" />
-              {/* <h2 className="text-center font-bold text-xl text-[var(--color-base-content)]">
-                <span className="text-[var(--color-primary-content)] text-shadow-lg text-3xl tracking-tighter">
-                  NadaMart.
-                </span>
-                <span className="text-[var(--color-primary-content)] text-md font-thin">
-                  ca
-                </span>
-              </h2> */}
+              <img src={Navlogo.src} alt="pasalubong 905 logo" className="w-44" />
             </Link>
           </Typography>
 

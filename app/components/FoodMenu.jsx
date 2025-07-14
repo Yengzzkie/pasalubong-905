@@ -17,7 +17,7 @@ const FoodMenu = ({ items }) => {
   ];
 
   return (
-    <div className="bg-[#fff] font-raleway flex flex-col items-center mb-4 px-6 lg:px-0">
+    <div className="bg-[#fff] font-raleway flex flex-col items-center mb-4 px-6 pb-10 lg:pb-20">
       <div className="container">
         <div
           className={`flex flex-col items-center grey-bg h-full p-10 lg:p-20`}
