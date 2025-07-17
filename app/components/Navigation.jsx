@@ -80,7 +80,7 @@ function Navigation() {
   }
 
   return (
-    <div className="sticky top-0 z-50 !bg-[#fff] !text-[var(--color-base-content)]">
+    <div className="sticky top-0 z-50 !bg-[#fff] !text-[var(--color-base-content)] shadow-md">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -197,9 +197,9 @@ function Navigation() {
                     onClick={handleCloseNavMenu}
                     sx={{
                       my: 2,
-                      color: "var(--color-base-content)",
+                      color: "#364153",
                       display: "block",
-                      fontWeight: "400",
+                      fontWeight: "600",
                       "&:hover": { textDecoration: "underline" },
                     }}
                   >

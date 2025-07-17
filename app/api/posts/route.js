@@ -40,6 +40,7 @@ export async function POST(request) {
       image,
       category,
       tags,
+      isOtherProduct,
     } = await request.json();
 
     const newPost = await prisma.post.create({
@@ -52,6 +53,7 @@ export async function POST(request) {
         image,
         category,
         tags,
+        isOtherProduct
       },
     });
 

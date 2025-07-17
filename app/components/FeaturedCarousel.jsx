@@ -72,7 +72,7 @@ function FeaturedCarousel({ items }) {
   return (
     <div className="slider-container">
       <Slider {...settings}>
-        {items?.posts?.map((item, index) => (
+        {items?.posts?.filter((item) => item.isFeatured).map((item, index) => (
           <div className="px-4 mb-4" key={index}>
             <div className="flex flex-col bg-zinc-50 overflow-hidden rounded shadow">
               <div className="h-64 w-full relative">

@@ -10,7 +10,6 @@ import axios from "axios";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import ImageUploader from "@/app/components/ImageUploader";
@@ -18,10 +17,10 @@ import Loader from "@/app/components/ui/Loader";
 import ShadowedCard from "@/app/components/ui/ShadowedCard";
 import ConditionSelect from "@/app/components/ui/ConditionSelect";
 import TagSelect from "@/app/components/ui/TagSelect";
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import TextareaAutosize from "@mui/material/TextareaAutosize";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 const Page = () => {
   const { userId } = useParams();
@@ -32,6 +31,7 @@ const Page = () => {
   const [isFeatured, setIsFeatured] = useState(false);
   const [category, setCategory] = useState("PORK");
   const [tags, setTags] = useState([]);
+  const [isOtherProduct, setIsOtherProduct] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const session = useSession();
@@ -92,168 +92,138 @@ const Page = () => {
   }
 
   return (
-    <div className="lg:p-8 p-4">
-      <form onSubmit={handleSubmit} className="mb-4 flex flex-col gap-6">
-        {/* Ad Details */}
-        <ShadowedCard index={1} step="Ad details">
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="title"
-              className="text-xl lg:text-2xl font-semibold text-zinc-600"
-            >
-              Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              value={itemName}
-              onChange={(e) => setItemName(e.target.value)}
-              placeholder="Your title here..."
-              className="w-full px-4 py-2 border border-zinc-400 text-zinc-600 bg-transparent"
-              required
-            />
-          </div>
+    <div className="max-w-3xl mx-auto p-4 sm:p-6">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Item Details */}
+        <ShadowedCard index={1} step="Item details">
+          <div className="space-y-4">
+            <div>
+              <label
+                htmlFor="title"
+                className="block font-medium text-zinc-700"
+              >
+                Title
+              </label>
+              <input
+                type="text"
+                name="title"
+                value={itemName}
+                onChange={(e) => setItemName(e.target.value)}
+                placeholder="Item name"
+                className="w-full px-3 py-2 border border-zinc-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
 
-          <div className="flex flex-col gap-2 mt-6">
-            <label
-              htmlFor="description"
-              className="text-xl lg:text-2xl font-semibold text-zinc-600"
-            >
-              Description
-            </label>
-            <TextareaAutosize
-              aria-label="empty textarea"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Type your description here..."
-              style={{ width: "100%", height: 100, border: ".5px solid #52525c", borderRadius: "4px", padding: "10px" }}
-            />
+            <div>
+              <label
+                htmlFor="description"
+                className="block font-medium text-zinc-700"
+              >
+                Description
+              </label>
+              <TextareaAutosize
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Item description"
+                minRows={4}
+                className="w-full px-3 py-2 border border-zinc-300 rounded shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
           </div>
         </ShadowedCard>
 
-        {/* Upload Images */}
-        <ShadowedCard index={2} step="Upload images">
-          <div className="flex flex-col gap-2">
-            <label className="text-xl lg:text-2xl font-semibold text-zinc-600">
-              Image
-            </label>
+        {/* Image Upload */}
+        <ShadowedCard index={2} step="Upload image">
+          <div className="space-y-2">
+            <label className="block font-medium text-zinc-700">Images</label>
             <ImageUploader ref={uploaderRef} />
           </div>
         </ShadowedCard>
 
-        {/* Location */}
-        {/* <ShadowedCard index={3} step="Set pickup/meetup location">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="text-[var(--color-base-content)]">
-              <ProvinceSelect location={location} setLocation={setLocation} />
+        {/* Price and Featured */}
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <div className="flex items-center gap-2 font-medium text-zinc-700">
+              <span className="text-xs bg-gray-200 px-2 py-0.5 rounded">
+                {3}
+              </span>
+              <span>Price</span>
             </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row items-start lg:items-end gap-4">
-            <TextField
-              label="City"
-              variant="outlined"
-              value={location.city}
-              onChange={(e) =>
-                setLocation({ ...location, city: e.target.value })
-              }
-            />
-
-            <div>
-              <p className="text-xs mb-2">
-                <ErrorOutlineIcon fontSize="inherit" /> Enhance location by entering a Postal Code
-              </p>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="flex flex-col lg:flex-row gap-4">
               <TextField
-                label="Postal code"
+                label="Price"
                 variant="outlined"
-                value={location.postal_code?.toUpperCase().trim()}
-                onChange={(e) =>
-                  setLocation({ ...location, postal_code: e.target.value })
-                }
+                fullWidth
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                type="number"
+                required
               />
             </div>
-          </div>
+          </AccordionDetails>
+        </Accordion>
 
-          <GoogleMap location={location} />
-        </ShadowedCard> */}
-
-        {/* Contact information */}
-        <div>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              <Typography component="span">
-                <div className="flex items-center pb-3 gap-2">
-                  <span className="bg-[var(--color-base-300)] text-xs rounded-sm px-2 py-1">
-                    {3}
-                  </span>
-                  <span className="font-bold">Price</span>
-                </div>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className="flex flex-col lg:flex-row  gap-4">
-                <TextField
-                  sx={{ width: "100%", flex: 1 }}
-                  label="Price"
-                  variant="outlined"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  type="number"
-                  required
-                />
-
-                <FormGroup sx={{ flex: 1 }}>
-                  <FormControlLabel required control={<Checkbox checked={isFeatured} onChange={(e) => setIsFeatured(e.target.checked)} />} label="Is featured?" />
-                </FormGroup>
+        {/* Additional Details */}
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            <div className="flex items-center gap-2 font-medium text-zinc-700">
+              <span className="text-xs bg-gray-200 px-2 py-0.5 rounded">
+                {4}
+              </span>
+              <span>Additional Details</span>
+            </div>
+          </AccordionSummary>
+          <AccordionDetails>
+            <div className="flex flex-col gap-4">
+              <ConditionSelect category={category} setCategory={setCategory} />
+              <div className="flex-1">
+                <p className="text-xs text-zinc-500 mb-1">
+                  <ErrorOutlineIcon fontSize="small" className="mr-1" />
+                  Add up to 6 main ingredients.
+                </p>
+                <TagSelect tags={tags} setTags={setTags} />
               </div>
-            </AccordionDetails>
-          </Accordion>
 
-          {/* Additional details */}
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              <Typography component="span" sx={{ width: "100%" }}>
-                <div className="flex items-center gap-2">
-                  <span className="bg-[var(--color-base-300)] text-xs rounded-sm px-2 py-1">
-                    {4}
-                  </span>
-                  <span className="font-bold">Additional Details</span>
-                </div>
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className="flex flex-col lg:flex-row items-end gap-4">
-                <ConditionSelect
-                  category={category}
-                  setCategory={setCategory}
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isFeatured}
+                      onChange={(e) => setIsFeatured(e.target.checked)}
+                    />
+                  }
+                  label="Feature this item"
+                  sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.875rem" } }}
                 />
-
-                <div>
-                  <p className="text-xs mb-1">
-                    <ErrorOutlineIcon fontSize="inherit" /> Add up to 6 main ingredients.
-                  </p>
-                  <TagSelect tags={tags} setTags={setTags} />
-                </div>
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        </div>
+              </FormGroup>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isOtherProduct}
+                      onChange={(e) => setIsOtherProduct(e.target.checked)}
+                    />
+                  }
+                  label="Is other product?"
+                  sx={{ "& .MuiFormControlLabel-label": { fontSize: "0.875rem" } }}
+                />
+              </FormGroup>
+            </div>
+          </AccordionDetails>
+        </Accordion>
 
         {/* Submit Button */}
-        <button
-          type="submit"
-          className="flex justify-center mt-3 ml-auto px-4 py-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary-content)] text-[var(--color-primary-content)] hover:text-white rounded-sm w-full cursor-pointer"
-        >
-          {isLoading ? <Loader /> : "Publish"}
-        </button>
+        <div className="pt-4">
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors"
+          >
+            {isLoading ? <Loader /> : "Publish"}
+          </button>
+        </div>
       </form>
     </div>
   );

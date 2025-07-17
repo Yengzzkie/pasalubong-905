@@ -11,7 +11,7 @@ import OtherProducts from "./components/OtherProducts";
 export default function Home() {
   const [items, setItems] = useState([]);
 
-  async function fetchFeaturedItems() {
+  async function fetchItems() {
     try {
       const response = await axios.get('/api/posts?page=1')
       console.log(response.data)
@@ -22,7 +22,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    fetchFeaturedItems();
+    fetchItems();
   }, [])
 
   return (
