@@ -3,13 +3,14 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
-export default function OtherProductsCard() {
+export default function OtherProductsCard({ item }) {
+  console.log("OtherProductsCard item:", item);
   return (
     <Card className="w-full max-w-sm overflow-hidden rounded shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <div className="relative h-48 w-full overflow-hidden">
         <img
-          src="https://f000.backblazeb2.com/file/recipekit-bucket/20230502144252-cebu-style-lechon.jpg"
-          alt="Cebu Style Lechon"
+          src={item.image[0]}
+          alt={item.item_name}
           className="h-full w-full object-cover transform hover:scale-105 transition-transform duration-300"
         />
       </div>
@@ -20,13 +21,13 @@ export default function OtherProductsCard() {
             color="blue-gray"
             className="text-base font-semibold truncate"
           >
-            Cebu Style Lechon
+            {item.item_name}
           </Typography>
           <Typography
             color="red"
             className="text-base font-semibold"
           >
-            $349.00
+            ${item.price}
           </Typography>
         </div>
       </div>

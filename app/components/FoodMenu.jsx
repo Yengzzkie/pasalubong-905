@@ -59,7 +59,7 @@ const FoodMenu = ({ items }) => {
       <div className="container grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mt-10">
         <AnimatePresence mode="wait">
           {items?.posts
-            ?.filter((item) => selectedCategory === "ALL" ? true : item.category === selectedCategory)
+            ?.filter((item) => selectedCategory === "ALL" ? true : item.category === selectedCategory).filter((item) => !item.isOtherProduct)
             .map((item, index) => (
               <motion.div
                 layout

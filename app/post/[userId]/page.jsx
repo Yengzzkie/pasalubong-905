@@ -64,6 +64,7 @@ const Page = () => {
         image: fullUrls,
         category,
         tags,
+        isOtherProduct,
       };
 
       await axios.post("/api/posts", formData);

@@ -35,7 +35,7 @@ const OtherProducts = ({ items }) => {
           </div>
 
           {/* NAVIGATION */}
-          <div className="h-32 custom-shadow">
+          {/* <div className="h-32 custom-shadow">
             <div className="h-full w-full">
               <div className="flex items-center justify-center h-full">
                 <ul className="flex flex-wrap justify-center gap-4 px-6 lg:px-0">
@@ -55,16 +55,12 @@ const OtherProducts = ({ items }) => {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="container grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 mt-10">
           <AnimatePresence mode="wait">
             {items?.posts
-              ?.filter((item) =>
-                selectedCategory === "ALL"
-                  ? true
-                  : item.category === selectedCategory
-              )
+              ?.filter((item) => item.isOtherProduct)
               .map((item, index) => (
                 <motion.div
                   layout
@@ -76,7 +72,7 @@ const OtherProducts = ({ items }) => {
                   transition={{ duration: 0.25, ease: "easeOut" }}
                 >
                   {/* IMAGE */}
-                  <OtherProductsCard />
+                  <OtherProductsCard item={item} />
                 </motion.div>
               ))}
           </AnimatePresence>
