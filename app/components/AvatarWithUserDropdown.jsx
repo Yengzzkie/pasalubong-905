@@ -14,7 +14,6 @@ import {
   InboxArrowDownIcon,
   PowerIcon,
   UserCircleIcon,
-  PencilSquareIcon,
 } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
@@ -25,14 +24,9 @@ export default function AvatarWithUserDropdown({ userData }) {
   // profile menu component
   const profileMenuItems = [
     {
-      label: "Create a Post",
-      icon: PencilSquareIcon,
-      link: `/post/${userData?.id}`,
-    },
-    {
       label: "Admin Dashboard",
       icon: UserCircleIcon,
-      link: `/dashboard`,
+      link: `/dashboard?userId=${userData?.id}`,
     },
     {
       label: "Edit Profile",

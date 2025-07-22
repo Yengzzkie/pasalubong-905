@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import {
   useStoreUserData,
-  usePostSearchResult,
-  useSearchQuery,
 } from "@/stores/store";
 import axios from "axios";
 import Link from "next/link";
@@ -21,8 +19,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AvatarWithUserDropdown from "./AvatarWithUserDropdown";
-import Loader from "./ui/Loader";
 import Navlogo from "@/public/images/nav-logo.jpeg"
+import LoadingSpinner from "./ui/LoadingSpinner";
 
 const pages = [
   { text: "Home", link: "/" },
@@ -71,7 +69,7 @@ function Navigation() {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography variant="h6" sx={{ flexGrow: 1, textAlign: "center" }}>
-              <Loader />
+              <LoadingSpinner />
             </Typography>
           </Toolbar>
         </Container>

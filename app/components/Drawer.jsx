@@ -7,21 +7,9 @@ import {
   useAnimate,
   motion,
 } from "framer-motion";
-import ItemDetails from "./ItemDetails";
 import CloseIcon from '@mui/icons-material/Close';
 import { useRouter } from "next/navigation";
 import { Avatar } from "@mui/material";
-
-export const DragCloseDrawerExample = ({ selectedPost, open, setOpen }) => {
-
-  return (
-    <div>
-      <DragCloseDrawer selectedPost={selectedPost} open={open} setOpen={setOpen}>
-        <ItemDetails itemData={selectedPost} />
-      </DragCloseDrawer>
-    </div>
-  );
-};
 
 export const DragCloseDrawer = ({ selectedPost, open, setOpen, children }) => {
   const router = useRouter();

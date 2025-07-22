@@ -7,7 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
@@ -15,22 +15,28 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
-
-const mainListItems = [
-  { text: 'Home', icon: <HomeRoundedIcon />, link: '' },
-  { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '/register' },
-  { text: 'Schedule', icon: <CalendarMonthIcon />, link: '' },
-  { text: 'Tasks', icon: <AssignmentRoundedIcon />, link: '' },
-  { text: 'Return to Homepage', icon: <KeyboardReturnIcon />, link: "/" }
-];
-
-const secondaryListItems = [
-  { text: 'Settings', icon: <SettingsRoundedIcon /> },
-  { text: 'About', icon: <InfoRoundedIcon /> },
-  { text: 'Feedback', icon: <HelpRoundedIcon /> },
-];
+import AddIcon from '@mui/icons-material/Add';
+import { useSearchParams } from 'next/navigation'
 
 export default function MenuContent() {
+  const searchParams = useSearchParams();
+  const userId = searchParams.get('userId');
+
+  const mainListItems = [
+    { text: 'Dashboard', icon: <DashboardIcon />, link: '' },
+    { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '/register' },
+    { text: 'Schedule', icon: <CalendarMonthIcon />, link: '' },
+    { text: 'Tasks', icon: <AssignmentRoundedIcon />, link: '' },
+    { text: 'Create Item', icon: <AddIcon />, link: `/post/${userId}` },
+    { text: 'Return to Homepage', icon: <KeyboardReturnIcon />, link: "/" }
+  ];
+
+  const secondaryListItems = [
+    { text: 'Settings', icon: <SettingsRoundedIcon /> },
+    { text: 'About', icon: <InfoRoundedIcon /> },
+    { text: 'Feedback', icon: <HelpRoundedIcon /> },
+  ];
+
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
       <List dense>

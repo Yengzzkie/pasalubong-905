@@ -1,5 +1,4 @@
 "use client";
-import PostsGrid from "@/app/components/PostsGrid";
 import Hero from "@/app/components/Hero";
 import SubHero from "./components/SubHero";
 import Featured from "./components/Featured";
@@ -14,7 +13,6 @@ export default function Home() {
   async function fetchItems() {
     try {
       const response = await axios.get('/api/posts?page=1')
-      console.log(response.data)
       setItems(response.data)
     } catch (error) {
       console.error({ error })
@@ -32,10 +30,6 @@ export default function Home() {
       <Featured items={items} />
       <FoodMenu items={items} />
       <OtherProducts items={items} />
-      
-      {/* <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <PostsGrid />
-      </main> */}
     </div>
   );
 }

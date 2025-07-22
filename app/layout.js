@@ -3,7 +3,6 @@ import Navigation from "@/app/components/Navigation";
 import Footer from "./components/Footer";
 import { Provider } from "./components/SessionProvider";
 import { Suspense } from "react";
-import Loader from "./components/ui/Loader";
 import { Great_Vibes, Raleway } from 'next/font/google';
 
 const greatVibes = Great_Vibes({
@@ -29,7 +28,7 @@ export default async function RootLayout({ children }) {
       <body>
         <Provider>
           <Navigation />
-          <Suspense fallback={<Loader />}>
+          <Suspense>
             <div className="flex-1">{children}</div>
           </Suspense>
           <Footer />

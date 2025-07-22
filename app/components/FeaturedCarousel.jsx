@@ -2,6 +2,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import CardLoader from "./ui/CardLoader";
 
 function FeaturedCarousel({ items }) {
   function NextArrow(props) {
@@ -68,6 +69,16 @@ function FeaturedCarousel({ items }) {
       },
     ],
   };
+
+  if (!items || items.length === 0) {
+    return (
+      <div className="slider-container">
+        <Slider {...settings}>
+          <CardLoader />
+        </Slider>
+      </div>
+    );
+  }
 
   return (
     <div className="slider-container">
