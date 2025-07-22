@@ -13,7 +13,6 @@ import Carousel from "@/app/components/Carousel";
 import StaggeredDropDown from "@/app/components/StaggeredDropDown";
 import SkeletonLoader from "@/app/components/ui/SkeletonLoader";
 import Tag from "@/app/components/ui/Tag";
-import UserAvatarCard from "@/app/components/UserAvatarCard";
 import EditPostForm from "@/app/components/EditPostForm";
 import DeleteModal from "@/app/components/DeleteModal";
 import SendMessageModal from "@/app/components/SendMessageModal";
@@ -191,7 +190,6 @@ export default function ItemDetailsPage() {
       {/* Author avatar card */}
       <div>
         <h4 className="text-xl font-semibold mb-2">Listed by:</h4>
-        <UserAvatarCard userData={itemData?.author} />
       </div>
 
       <DeleteModal

@@ -7,7 +7,6 @@ import Loader from "@/app/components/ui/Loader";
 import Link from "next/link";
 import axios from "axios";
 import BackButton from "@/app/components/ui/BackButton";
-import UserAvatarCard from "@/app/components/UserAvatarCard";
 import Broom from "@/public/images/broom.png";
 
 export default function ProfilePage() {
@@ -37,10 +36,6 @@ export default function ProfilePage() {
     <div className="pt-4">
       <BackButton />
       <div className="flex flex-col lg:flex-row gap-4">
-        {/* USER AVATAR */}
-        <div className="flex-1 lg:sticky top-40 w-full lg:w-3xl lg:max-w-3xl max-h-fit mx-auto bg-white shadow-md lg:rounded-lg">
-          <UserAvatarCard userData={user} />
-        </div>
         {/* LISTING CARDS */}
         <div className="flex-1">
           {user?.posts.length > 0 ? (
