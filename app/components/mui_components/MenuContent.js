@@ -10,12 +10,12 @@ import Stack from '@mui/material/Stack';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
-import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import AddIcon from '@mui/icons-material/Add';
+import ShelvesIcon from '@mui/icons-material/Shelves';
 import { useSearchParams } from 'next/navigation'
 
 export default function MenuContent() {
@@ -26,7 +26,7 @@ export default function MenuContent() {
     { text: 'Dashboard', icon: <DashboardIcon />, link: '' },
     { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '/register' },
     { text: 'Schedule', icon: <CalendarMonthIcon />, link: '' },
-    { text: 'Tasks', icon: <AssignmentRoundedIcon />, link: '' },
+    { text: 'Manage Inventory', icon: <ShelvesIcon />, link: '' },
     { text: 'Create Item', icon: <AddIcon />, link: `/post/${userId}` },
     { text: 'Return to Homepage', icon: <KeyboardReturnIcon />, link: "/" }
   ];

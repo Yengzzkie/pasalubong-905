@@ -4,7 +4,6 @@ import {
 } from "@material-tailwind/react";
 
 export default function OtherProductsCard({ item }) {
-  console.log("OtherProductsCard item:", item);
   return (
     <Card className="w-full max-w-sm overflow-hidden rounded shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
       <div className="relative h-48 w-full overflow-hidden">

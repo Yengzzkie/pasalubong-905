@@ -27,7 +27,6 @@ const xThemeComponents = {
 export default function Dashboard(props) {
   const { data: session } = useSession();
 
-  console.log(session);
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
