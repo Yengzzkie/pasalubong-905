@@ -1,5 +1,4 @@
 "use client";
-
 import { useRef, useState } from "react";
 import { useFileUploadStore } from "@/stores/store";
 import { redirect, useParams } from "next/navigation";
@@ -93,7 +92,7 @@ const Page = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-4 sm:p-6">
+    <div className="w-full mx-auto p-4 sm:p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Item Details */}
         <ShadowedCard index={1} step="Item details">

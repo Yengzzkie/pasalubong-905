@@ -4,9 +4,9 @@ import { createClient } from "@/lib/supabase/client";
 import { cn } from "../../lib/utils";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
-import { IconBrandFacebook, IconBrandGoogle } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { Check, Eye, EyeOff, X } from "lucide-react";
+import TextField from '@mui/material/TextField';
 // import { registerInputSchema } from "../utils/registerInputSchema";
 import Loader from "./ui/Loader";
 import axios from "axios";
@@ -203,21 +203,20 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="min-h-fit max-w-xl w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-[var(--color-base-100)] shadow-lg mt-2">
-      <img src={Navlogo.src} alt="pasalubong905 logo" />
+    <div className="w-full p-4 md:p-8 shadow-input mt-2">
+      <img src={Navlogo.src} className="w-32" alt="pasalubong905 logo" />
       <br />
       <form className="my-2" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
-            <Label htmlFor="name">Employee's Name</Label>
-            <Input
+            <TextField
+              variant="filled"
               onChange={handleInputChange}
               value={formData.name}
               id="name"
-              placeholder="Username"
+              placeholder="Employee's name"
               type="text"
               name="name"
-              className="text-[var(--color-base-content)] bg-[var(--color-base-200)] focus-within:border-[var(--color-primary-content)] transition"
             />
           </LabelInputContainer>
 
@@ -234,38 +233,35 @@ const RegistrationForm = () => {
           </LabelInputContainer>
         </div>
 
+        {/* Email */}
         <div className="flex flex-col md:flex-row gap-1 items-center">
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="email">Email Address</Label>
-            <Input
+            <TextField
               onChange={handleInputChange}
               value={formData.email}
               id="email"
-              placeholder="user@domain.com"
+              placeholder="Email address"
               type="email"
               name="email"
-              className="text-[var(--color-base-content)] bg-[var(--color-base-200)] focus-within:border-[var(--color-primary-content)] transition"
+              variant="filled"
             />
           </LabelInputContainer>
         </div>
 
         <div className="w-full mx-auto mb-4">
-          <label
-            htmlFor="password"
-            className="text-[var(--color-base-content)] block text-sm font-medium"
-          >
-            Password
-          </label>
+          {/* Password */}
           <div className="relative">
-            <input
+            <TextField
               id="password"
               name="password"
+              placeholder="Password"
               type={isVisible ? "text" : "password"}
               value={formData.password}
               onChange={handleInputChange}
               aria-invalid={calculateStrength.score < 4}
               aria-describedby="password-strength"
-              className="w-full p-2 hover:border-2 rounded-md border border-[var(--color-base-300)] bg-[var(--color-base-200)] focus-within:border-[var(--color-primary-content)] transition"
+              variant="filled"
+              sx={{ width: '100%', padding: 0 }}
             />
             <button
               type="button"
@@ -277,23 +273,52 @@ const RegistrationForm = () => {
             </button>
           </div>
 
-          <label
-            htmlFor="confirmPassword"
-            className="text-[var(--color-base-content)] block text-sm font-medium mt-4 mb-1"
-          >
-            Confirm password
-          </label>
+          {/* Confirm Password */}
           <div className="relative">
-            <input
+            <TextField
               id="confirmPassword"
               name="confirmPassword"
+              placeholder="Confirm password"
               type={isVisible ? "text" : "password"}
               value={formData.confirmPassword}
               onChange={handleInputChange}
               aria-invalid={calculateStrength.score < 4}
               aria-describedby="password-strength"
-              className="w-full p-2 hover:border-2 rounded-md border border-[var(--color-base-300)] bg-[var(--color-base-200)] focus-within:border-[#525252] transition"
+              variant="filled"
+              sx={{ marginTop: 2, width: '100%', padding: 0 }}
             />
+          </div>
+
+          {/* Contact Number */}
+          <div className="flex flex-col md:flex-row gap-1 items-center">
+            <LabelInputContainer className="mb-4">
+              <TextField
+                onChange={handleInputChange}
+                value={formData.contact}
+                id="contact"
+                placeholder="Contact number"
+                type="tel"
+                name="contact"
+                variant="filled"
+                sx={{ marginTop: 2, width: '100%', padding: 0 }}
+              />
+            </LabelInputContainer>
+          </div>
+
+          {/* Address */}
+          <div className="flex flex-col md:flex-row gap-1 items-center">
+            <LabelInputContainer className="mb-4">
+              <TextField
+                onChange={handleInputChange}
+                value={formData.address}
+                id="address"
+                placeholder="Address"
+                type="text"
+                name="address"
+                variant="filled"
+                sx={{ marginTop: 1, width: '100%', padding: 0 }}
+              />
+            </LabelInputContainer>
           </div>
 
           {/* PASSWORD MATCH ERROR */}
@@ -358,39 +383,15 @@ const RegistrationForm = () => {
         </div>
 
         <button
-          className="flex justify-center items-center bg-gradient-to-br relative group/btn bg-[var(--color-primary)] text-[var(--color-primary-content)] hover:bg-[var(--color-primary-content)] hover:text-[#fff] w-full rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] cursor-pointer"
+          className="flex justify-center items-center bg-gradient-to-br relative group/btn bg-blue-600 text-white hover:bg-blue-500 hover:text-[#fff] w-40 ml-auto rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] cursor-pointer"
           type="submit"
         >
-          {loading ? <Loader /> : "Register"}
+          {loading ? <Loader /> : "Create New User"}
           <BottomGradient />
         </button>
         <p className="text-red-500 italic">{error}</p>
 
         <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent my-8 h-[1px] w-full" />
-
-        {/* <div className="flex flex-col space-y-4">
-          <button
-            className="relative group/btn flex items-center justify-start space-x-2 w-full px-4 h-10 rounded-md font-medium shadow-input bg-[var(--color-primary)] hover:bg-[var(--color-primary-content)] dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] cursor-pointer"
-            type="submit"
-          >
-            <IconBrandFacebook className="h-4 w-4 text-[var(--color-primary-content)] group-hover/btn:text-[var(--color-primary)]" />
-            <span className="text-sm text-[var(--color-primary-content)] group-hover/btn:text-[#fff]">
-              Facebook
-            </span>
-            <BottomGradient />
-          </button>
-          <button
-            type="submit"
-            className="relative group/btn flex items-center justify-start space-x-2 w-full px-4 h-10 rounded-md font-medium shadow-input bg-[var(--color-primary)] hover:bg-[var(--color-primary-content)] dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] cursor-pointer"
-            aria-label="Sign in with Google"
-          >
-            <IconBrandGoogle className="h-4 w-4 text-[var(--color-primary-content)] group-hover/btn:text-[var(--color-primary)]" />
-            <span className="text-sm text-[var(--color-primary-content)] group-hover/btn:text-[#fff]">
-              Google
-            </span>
-            <BottomGradient />
-          </button>
-        </div> */}
       </form>
     </div>
   );

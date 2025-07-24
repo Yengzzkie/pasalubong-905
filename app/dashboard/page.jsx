@@ -1,10 +1,13 @@
-import React from 'react'
-import Dashboard from '../components/Dashboard'
+import React from "react";
+import Link from "next/link";
+import MainGrid from "../components/mui_components/MainGrid";
 
 const page = () => {
   return (
-    <div><Dashboard /></div>
-  )
-}
+    <div>
+      <MainGrid />
+    </div>
+  );
+};
 
-export default page
+export default page;

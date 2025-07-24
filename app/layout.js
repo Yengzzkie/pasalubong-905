@@ -27,11 +27,11 @@ export default async function RootLayout({ children }) {
       <link rel="icon" href="/favicon.png" />
       <body>
         <Provider>
-          <Navigation />
+          {/* <Navigation /> */}
           <Suspense>
             <div className="flex-1">{children}</div>
           </Suspense>
-          <Footer />
+          {/* <Footer /> */}
         </Provider>
       </body>
     </html>

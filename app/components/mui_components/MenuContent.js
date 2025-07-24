@@ -1,5 +1,5 @@
 "use client"
-import * as React from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -21,13 +21,14 @@ import { useSearchParams } from 'next/navigation'
 export default function MenuContent() {
   const searchParams = useSearchParams();
   const userId = searchParams.get('userId');
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const mainListItems = [
-    { text: 'Dashboard', icon: <DashboardIcon />, link: '' },
-    { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '/register' },
+    { text: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
+    { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '/dashboard/register' },
     { text: 'Schedule', icon: <CalendarMonthIcon />, link: '' },
     { text: 'Manage Inventory', icon: <ShelvesIcon />, link: '' },
-    { text: 'Create Item', icon: <AddIcon />, link: `/post/${userId}` },
+    { text: 'Create Item', icon: <AddIcon />, link: `dashboard/post/${userId}` },
     { text: 'Return to Homepage', icon: <KeyboardReturnIcon />, link: "/" }
   ];
 
@@ -41,9 +42,9 @@ export default function MenuContent() {
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
       <List dense>
         {mainListItems.map((item, index) => (
-          <ListItem key={index} disablePadding sx={{ display: 'block' }}>
+          <ListItem selected={selectedIndex === index} key={index} disablePadding sx={{ display: 'block', marginBottom: 1, ":hover": { backgroundColor: 'rgba(0, 0, 0, 0.08)' } }}>
             <Link href={item.link}>
-              <ListItemButton selected={index === 0}>
+              <ListItemButton selected={selectedIndex === index} onClick={() => setSelectedIndex(index)}>
                 <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>
