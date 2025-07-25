@@ -17,18 +17,19 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import AddIcon from '@mui/icons-material/Add';
 import ShelvesIcon from '@mui/icons-material/Shelves';
 import { useSearchParams } from 'next/navigation'
+import { useSession } from 'next-auth/react';
 
 export default function MenuContent() {
-  const searchParams = useSearchParams();
-  const userId = searchParams.get('userId');
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const session = useSession();
+  const userId = session.data?.user?.id;
 
   const mainListItems = [
-    { text: 'Dashboard', icon: <DashboardIcon />, link: '/dashboard' },
-    { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: '/dashboard/register' },
-    { text: 'Schedule', icon: <CalendarMonthIcon />, link: '' },
-    { text: 'Manage Inventory', icon: <ShelvesIcon />, link: '' },
-    { text: 'Create Item', icon: <AddIcon />, link: `dashboard/post/${userId}` },
+    { text: 'Dashboard', icon: <DashboardIcon />, link: `/dashboard?userId=${userId}` },
+    { text: 'Manage Team', icon: <PeopleRoundedIcon />, link: `/dashboard/register?userId=${userId}` },
+    { text: 'Schedule', icon: <CalendarMonthIcon />, link: `/dashboard/schedule?userId=${userId}` },
+    { text: 'Manage Inventory', icon: <ShelvesIcon />, link: `` },
+    { text: 'Create Item', icon: <AddIcon />, link: `/dashboard/post/${userId}` },
     { text: 'Return to Homepage', icon: <KeyboardReturnIcon />, link: "/" }
   ];
 

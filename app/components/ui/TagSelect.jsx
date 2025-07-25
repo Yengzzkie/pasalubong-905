@@ -39,6 +39,7 @@ export default function TagSelect({ tags, setTags }) {
     <FormControl sx={{ m: 1, width: 300 }}>
       <TextField
         label="Tags (Optional)"
+        variant='filled'
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
