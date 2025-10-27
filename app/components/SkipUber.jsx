@@ -25,10 +25,11 @@ export default function SkipUber() {
         <h1 className="divider-white white-bg great-vibes-regular text-3xl lg:text-[36px] text-center !font-normal text-zinc-600">
           Find us on Uber Eats and Skip the Dishes
         </h1>
-        <p className="text-zinc-600 mt-16 text-[14px] w-full lg:w-1/2 text-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim nostrud exercitation ullamco laboris nisi.
+        <p className="text-zinc-500 mt-16 text-[14px] w-full lg:w-1/2 text-center">
+          Hassle days? Worry no more. We’re glad to let you know that pasalubong
+          905 is a partner of <span className="font-bold">UBER EATS & SKIP THE DISHES</span> where you can order
+          online. ORDER NOW & SAVOUR the flavors of Filipino cuisine delivered
+          right to your doorstep in Oshawa!
         </p>
       </div>
       <div className="flex flex-col lg:flex-row gap-6 justify-evenly">

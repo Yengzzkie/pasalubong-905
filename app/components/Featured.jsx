@@ -11,9 +11,7 @@ const Featured = ({ items }) => {
           Our Popular Dishes
         </h1>
         <p className="font-raleway text-zinc-600 mt-16 text-[14px] w-full lg:w-1/2 text-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim nostrud exercitation ullamco laboris nisi.
+          Based on our kababayans taste. Explore our menu & experience the warmth of Filipino hospitality on a plate.
         </p>
       </div>
       <div className="px-10 lg:px-40">

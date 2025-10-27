@@ -28,9 +28,7 @@ const OtherProducts = ({ items }) => {
               Other Products
             </h1>
             <p className="text-zinc-600 mt-16 text-[14px] w-full lg:w-1/2 text-center">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim nostrud exercitation ullamco laboris nisi.
+              Try our Pasalubong treats & delicacies.
             </p>
           </div>
 

@@ -26,9 +26,8 @@ const FoodMenu = ({ items }) => {
             Our Food Menu
           </h1>
           <p className="text-zinc-600 mt-16 text-[14px] w-full lg:w-1/2 text-center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim nostrud exercitation ullamco laboris nisi.
+            Explore our selection of curated homemade products, merienda by the
+            vibrant culture & tradition of the Philippines.
           </p>
         </div>
 
@@ -59,7 +58,12 @@ const FoodMenu = ({ items }) => {
       <div className="container grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 mt-10">
         <AnimatePresence mode="wait">
           {items?.posts
-            ?.filter((item) => selectedCategory === "ALL" ? true : item.category === selectedCategory).filter((item) => !item.isOtherProduct)
+            ?.filter((item) =>
+              selectedCategory === "ALL"
+                ? true
+                : item.category === selectedCategory
+            )
+            .filter((item) => !item.isOtherProduct)
             .map((item, index) => (
               <motion.div
                 layout
