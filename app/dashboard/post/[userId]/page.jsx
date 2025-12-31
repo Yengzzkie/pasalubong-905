@@ -47,7 +47,7 @@ const Page = () => {
 
     try {
       const baseUrl =
-        "https://dpdvqpbarkmryrbjtrer.supabase.co/storage/v1/object/public/images/item";
+        "https://tkwdscmedenodouotzeh.supabase.co/storage/v1/object/public/images/item";
 
       const fullUrls = imgFiles.map((file) => {
         const fileName = typeof file === "string" ? file : file.name;
@@ -65,6 +65,8 @@ const Page = () => {
         tags,
         isOtherProduct,
       };
+
+      console.log(formData);
 
       await axios.post("/api/posts", formData);
       await uploaderRef.current?.onUpload();
