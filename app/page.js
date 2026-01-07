@@ -17,6 +17,7 @@ export default function Home() {
     try {
       const response = await axios.get('/api/posts?page=1')
       setItems(response.data)
+      console.log(response.data);
     } catch (error) {
       console.error({ error })
     }
